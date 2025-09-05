@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Concrete OEM Customer Feedback Form</title>
+  <link rel="icon" type="image/png" href="/static/images/logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+  <style>
+    :root {
+      --accent: #ff9800;
+      --border: #ccc;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #fff;
+      line-height: 1.6;
+    }
+    h2 {
+      background: #f0f0f0;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      position: relative;
+    }
+    h2 img {
+      position: absolute;
+      left: 20px;
+      top: 5px;
+      height: 60px;
+    }
+    h3 {
+      text-align: center;
+      font-size: 22px;
+      margin: 20px 0;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, textarea, select, canvas {
+      width: 100%;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 18px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px;
+      text-align: center;
+    }
+    .radio-group label {
+      margin-right: 10px;
+      font-weight: normal;
+    }
+    .star-rating,
+    .star-rating-group {
+      display: inline-flex;
+      direction: rtl;
+      font-size: 1.5em;
+    }
+    .star-rating input[type="radio"],
+    .star-rating-group input[type="radio"] {
+      display: none;
+    }
+    .star-rating label,
+    .star-rating-group label {
+      color: lightgray;
+      cursor: pointer;
+      padding: 0 2px;
+    }
+    .star-rating input:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label,
+    .star-rating-group input:checked ~ label,
+    .star-rating-group label:hover,
+    .star-rating-group label:hover ~ label {
+      color: gold;
+    }
+    .signature {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 25px;
+    }
+    .signature-box {
+      flex: 1;
+      min-width: 45%;
+      text-align: center;
+    }
+    canvas {
+      border: 1px solid var(--border);
+      height: 150px;
+      background: #f9f9f9;
+    }
+    .clear-btn {
+      margin-top: 5px;
+      background-color: #e53935;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .time-container {
+      position: relative;
+    }
+    .time-container button {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .signature-box {
+        min-width: 100%;
+      }
+      h2 {
+        padding-left: 80px;
+        justify-content: flex-start;
+      }
+      h2 img {
+        height: 40px;
+        margin-right: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h2>
+    Concrete OEM Private Limited
+    <img src="/static/images/logo (1).png" alt="Concrete OEM Logo" />
+  </h2>
+
+  <h3>Customer Feedback Form</h3>
+
+  <form id="feedbackForm">
+    <div class="grid-2">
+      <div><label for="customer_name">Customer Name:</label><input id="customer_name" name="customer_name" type="text" pattern="[A-Za-z\s]+" required /></div>
+      <div><label for="supervisor_name">Project Manager / Supervisor:</label><input id="supervisor_name" name="supervisor_name" type="text" pattern="[A-Za-z\s]+" required /></div>
+      <div><label for="contact_number">Contact Number:</label><input id="contact_number" name="contact_number" maxlength="10" required /></div>
+      <div><label for="email_id">Email ID:</label><input id="email_id" name="email_id" type="email" required /></div>
+      <div><label for="date">Date of Concrete:</label><input id="date" name="date" type="date" required /></div>
+      <div class="time-container"><label for="start_time">Start Time (HH:MM):</label><input id="start_time" name="start_time" type="text" required /><button type="button" id="clockButtonStart">🕒</button></div>
+      <div class="time-container"><label for="end_time">End Time (HH:MM):</label><input id="end_time" name="end_time" type="text" required /><button type="button" id="clockButtonEnd">🕒</button></div>
+      <div>
+        <label for="pump">Pump:</label>
+        <select name="pump" id="pump">
+          <option value="">Select</option>
+          <option value="CH-01">CH-01</option>
+          <option value="CH-02">CH-02</option>
+          <option value="CH-03">CH-03</option>
+          <option value="CH-04">CH-04</option>
+          <option value="CH-05">CH-05</option>
+          <option value="CH-06">CH-06</option>
+          <option value="CH-07">CH-07</option>
+          <option value="CH-08">CH-08</option>
+          <option value="CH-09">CH-09</option>
+          <option value="CH-10">CH-10</option>
+          <option value="CH-11">CH-11</option>
+          <option value="CH-12">CH-12</option>
+          <option value="CH-13">CH-13</option>
+          <option value="CH-14">CH-14</option>
+          <option value="CH-15">CH-15</option>
+        </select>
+      </div>
+      <div><label for="dump">Dump:</label><input id="dump" name="dump" type="text" /></div>
+    </div>
+
+    <p><strong>Rate our team on Courtesy, Behaviour & Responsiveness (1–5):</strong></p>
+    <table>
+      <tr>
+        <th>Site Sup.</th>
+        <th>TM Driver</th>
+        <th>FSE</th>
+      </tr>
+      <tr>
+        <td><div class="star-rating" data-name="site_sup"></div></td>
+        <td><div class="star-rating" data-name="tm_driver"></div></td>
+        <td><div class="star-rating" data-name="fse"></div></td>
+      </tr>
+      <tr>
+        <th>Pumping Staff</th>
+        <th>Order Taker</th>
+        <th>Plant Staff</th>
+      </tr>
+      <tr>
+        <td><div class="star-rating" data-name="pumping_staff"></div></td>
+        <td><div class="star-rating" data-name="order_taker"></div></td>
+        <td><div class="star-rating" data-name="plant_staff"></div></td>
+      </tr>
+    </table>
+
+    <p><strong>Rate adherence to safety by our staff:</strong></p>
+    <div class="star-rating-group" data-name="safety"></div>
+
+    <p><strong>Overall Performance Rating:</strong></p>
+    <div class="star-rating-group" data-name="performance"></div>
+
+    <p><strong>Suggestions for Improvement:</strong></p>
+    <textarea name="suggestions" id="suggestions" rows="3"></textarea>
+
+    <p><strong>Will you recommend Concrete OEM to others?</strong></p>
+    <div class="radio-group">
+      <label><input type="radio" name="recommend" value="yes" required /> YES</label>
+      <label><input type="radio" name="recommend" value="no" /> NO</label>
+    </div>
+
+    <div class="signature">
+      <div class="signature-box">
+        <p><strong>Signature of Site Supervisor</strong></p>
+        <canvas id="sigSupervisor"></canvas>
+        <button type="button" class="clear-btn" onclick="clearSignature('sigSupervisor')">Clear</button>
+      </div>
+      <div class="signature-box">
+        <p><strong>Signature of Customer</strong></p>
+        <canvas id="sigCustomer"></canvas>
+        <button type="button" class="clear-btn" onclick="clearSignature('sigCustomer')">Clear</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <button type="submit" style="padding: 10px 20px; font-size: 16px;">Submit</button>
+    </div>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.6/dist/signature_pad.umd.min.js"></script>
+  <script>
+    // ====== CONFIGURE YOUR BACKEND URL HERE =======
+    const BACKEND_URL = "http://106.51.181.21:2025"; // e.g. http://123.45.67.89:2025 or https://example.com
+
+    // Initialize signature pads
+    const pads = {
+      sigSupervisor: new SignaturePad(document.getElementById("sigSupervisor")),
+      sigCustomer: new SignaturePad(document.getElementById("sigCustomer"))
+    };
+
+    function clearSignature(id) {
+      pads[id].clear();
+    }
+
+    // Limit contact number input to digits max 10
+    document.getElementById("contact_number").addEventListener("input", function () {
+      this.value = this.value.replace(/\D/g, '').slice(0, 10);
+    });
+
+    // Create star rating inputs dynamically
+    function createStars(name) {
+      let html = '';
+      for (let i = 5; i >= 1; i--) {
+        html += `<input type="radio" name="${name}" id="${name}_${i}" value="${i}" required><label for="${name}_${i}">★</label>`;
+      }
+      return html;
+    }
+    document.querySelectorAll(".star-rating, .star-rating-group").forEach(el => {
+      el.classList.add("star-rating");
+      el.innerHTML = createStars(el.dataset.name);
+    });
+
+    // Initialize flatpickr time pickers
+    const startTimePicker = flatpickr("#start_time", { enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true });
+    const endTimePicker = flatpickr("#end_time", { enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true });
+
+    // Clock buttons to open time pickers
+    document.getElementById("clockButtonStart").addEventListener("click", () => startTimePicker.open());
+    document.getElementById("clockButtonEnd").addEventListener("click", () => endTimePicker.open());
+
+    // FORM SUBMISSION
+    document.getElementById("feedbackForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      // Collect form data
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+
+      // Add signature images or null if empty
+      data.sigSupervisor = pads.sigSupervisor.isEmpty() ? null : pads.sigSupervisor.toDataURL();
+      data.sigCustomer = pads.sigCustomer.isEmpty() ? null : pads.sigCustomer.toDataURL();
+
+      try {
+        // Send data to backend POST /submit
+        const res = await fetch(`${BACKEND_URL}/submit`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        if (!res.ok) throw new Error("Network response not ok");
+
+        const result = await res.json();
+
+        if (result.status === "success") {
+          // Ask user to download PDF
+          if (confirm("✅ Thank you for your feedback! Would you like to download your feedback form?")) {
+            const pdfRes = await fetch(`${BACKEND_URL}/download`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data)
+            });
+
+            if (!pdfRes.ok) throw new Error("PDF download failed");
+
+            const blob = await pdfRes.blob();
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "feedback_summary.pdf";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+          }
+          this.reset();
+          pads.sigSupervisor.clear();
+          pads.sigCustomer.clear();
+        } else {
+          alert("❌ Submission failed: " + (result.message || "Unknown error"));
+        }
+      } catch (error) {
+        console.error(error);
+        alert("❌ Error submitting the form. Please try again later.");
+      }
+    });
+  </script>
+</body>
+</html>
